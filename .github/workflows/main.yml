@@ -16,13 +16,13 @@ jobs:
       run: ./ngrok authtoken $NGROK_AUTH_TOKEN
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-    - name: Enable RDP
+    - name: Enable SSH
       run: |
         sudo apt update
-        sudo apt install -y xrdp
-        sudo systemctl enable xrdp
-        sudo systemctl start xrdp
-        sudo ufw allow 3389
+        sudo apt install -y openssh-server
+        sudo systemctl enable ssh
+        sudo systemctl start ssh
+        sudo ufw allow 22
         echo "runneradmin:P@ssw0rd" | sudo chpasswd
-    - name: Create Tunnel
-      run: ./ngrok tcp 3389
+    - name: Create Tunnel for SSH
+      run: ./ngrok tcp 22
