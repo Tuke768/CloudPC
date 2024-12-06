@@ -23,6 +23,6 @@ jobs:
         sudo systemctl enable ssh
         sudo systemctl start ssh
         sudo ufw allow 22
-        echo "runneradmin:P@ssw0rd" | sudo chpasswd
+        echo "runneradmin:P@ssw0rd!" | sudo chpasswd
     - name: Create Tunnel for SSH
       run: ./ngrok tcp 22
